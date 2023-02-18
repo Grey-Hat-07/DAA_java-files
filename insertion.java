@@ -1,11 +1,9 @@
-// import java.util.*;
 import java.io.*;
-
-public class selection {
+// import java.util.*;
+public class insertion {
     public static void main(String []args){
-        int []arr= new int[100];
-        int k=0;
-        //System.out.println("Enter the number of elements :");
+        int[] arr = new int[100];
+        int k = 0;
         try{
             File f = new File(args[0]);
             BufferedReader br = new BufferedReader(new FileReader(f));
@@ -20,7 +18,6 @@ public class selection {
             }
             System.out.println(" " + filecontent);
             st = "";
-
             for (int i = 0; i < filecontent.length(); i++) {
                 if (filecontent.charAt(i) == ' ') {
                     arr[k++] = Integer.parseInt(st);
@@ -29,33 +26,27 @@ public class selection {
                 } else
                     st += Character.toString(filecontent.charAt(i));
             }
-           // int min=0;
-           for(int i=0;i<k;i++){
-               int min=i;
-               for(int j=i+1;j<k;j++){
-                   if(arr[j]<arr[min]){
-                       min=j;
-                   }
-               }
-               int temp=arr[min];
-               arr[min]=arr[i];
-               arr[i]=temp;
+            for(int i=1;i<k;i++){
+                int key=arr[i];
+                int j=i-1;
+                while(j>=0 && arr[j]>key){
+                    arr[j+1]=arr[j];
+                    j--;
+                }
+                arr[j+1]=key;
             }
-            for(int i=0;i<k;i++){
-                System.out.print(" "+arr[i]);
+            st="";
+            for (int i = 0; i < k; i++) {
+                System.out.print(" " + arr[i]);
+                st+=Integer.toString(arr[i])+" ";
             }
             FileWriter fw = new FileWriter(f,false);
-            for(int i=0;i<k;i++){
-                fw.write(Integer.toString(arr[i])+" ");
-            }
+            fw.write(st);
             fw.close();
             br.close();
 
-        }catch(IOException e){
-            System.out.println("Exception" +e);
-        }
-        catch(Exception e){
-            System.out.println("Exception" +e);
+        }catch(Exception e){
+            System.out.println("Exception : " + e);
         }
     }
 }
