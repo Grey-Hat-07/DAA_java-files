@@ -31,7 +31,7 @@ public class bubble {
                 } else
                     st += Character.toString(filecontent.charAt(i));
             }
-            arr[k++] = Integer.parseInt(st);
+            //arr[k++] = Integer.parseInt(st);
             for (int i = 0; i < k; i++) {
                 for (int j = 0; j < k - i - 1; j++) {
                     if (arr[j] > arr[j + 1]) {
@@ -52,9 +52,9 @@ public class bubble {
             fw.close();
             br.close();
         } catch (IOException e) {
-            
+            System.out.println("Exception : " + e);
         } catch (Exception e) {
-
+            System.out.println("Exception : " + e);
         }
         sc.close();
     }
